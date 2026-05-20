@@ -27,6 +27,6 @@
         }
         @Override
         public String toString() {
-            return nombre + " - Edad: " + " - Emergencia: " + emergencia + " - Código: " + codigo;
+            return nombre + " - Emergencia: " + emergencia + " - Código: " + codigo;
         }
     }
