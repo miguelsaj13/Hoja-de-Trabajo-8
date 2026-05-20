@@ -2,17 +2,30 @@
 
 import java.util.Vector;
 
+/**
+ * Implementación de una Priority Queue usando Min Heap.
+ * 
+ * @param <E> tipo de dato comparable almacenado en el heap
+ */
 public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E>
 {
 
 	protected Vector<E> data; // the data, kept in heap order
 
+	/**
+	 * Construye un heap vacío.
+	 */
 	public VectorHeap()
 	// post: constructs a new priority queue
 	{
 		data = new Vector<E>();
 	}
 
+	/**
+	 * Construye un heap a partir de un vector.
+	 * 
+	 * @param v vector inicial
+	 */
 	public VectorHeap(Vector<E> v)
 	// post: constructs a new priority queue from an unordered vector
 	{
@@ -24,6 +37,12 @@ public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E>
 		}
 	}
 
+	/**
+	 * Obtiene el índice del padre.
+	 * 
+	 * @param i índice del nodo
+	 * @return índice del padre
+	 */
 	protected static int parent(int i)
 	// pre: 0 <= i < size
 	// post: returns parent of node at location i
@@ -31,6 +50,12 @@ public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E>
 		return (i - 1) / 2;
 	}
 
+	/**
+	 * Obtiene el índice del hijo izquierdo.
+	 * 
+	 * @param i índice del nodo
+	 * @return índice del hijo izquierdo
+	 */
 	protected static int left(int i)
 	// pre: 0 <= i < size
 	// post: returns index of left child of node at location i
@@ -38,6 +63,12 @@ public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E>
 		return 2 * i + 1;
 	}
 
+	/**
+	 * Obtiene el índice del hijo derecho.
+	 * 
+	 * @param i índice del nodo
+	 * @return índice del hijo derecho
+	 */
 	protected static int right(int i)
 	// pre: 0 <= i < size
 	// post: returns index of right child of node at location i
@@ -45,6 +76,11 @@ public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E>
 		return (2 * i + 1) + 1;
 	}
 
+	/**
+	 * Reacomoda un nodo hacia arriba para mantener el heap.
+	 * 
+	 * @param leaf posición del nodo
+	 */
 	protected void percolateUp(int leaf)
 	// pre: 0 <= leaf < size
 	// post: moves node at index leaf up to appropriate position
@@ -63,6 +99,11 @@ public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E>
 		data.set(leaf, value);
 	}
 
+	/**
+	 * Agrega un elemento al heap.
+	 * 
+	 * @param value elemento a insertar
+	 */
 	@Override
 	public void add(E value)
 	// pre: value is non-null comparable
@@ -72,6 +113,11 @@ public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E>
 		percolateUp(data.size() - 1);
 	}
 
+	/**
+	 * Reacomoda la raíz hacia abajo para mantener el heap.
+	 * 
+	 * @param root índice de la raíz
+	 */
 	protected void pushDownRoot(int root)
 	// pre: 0 <= root < size
 	// post: moves node at index root down
@@ -114,6 +160,11 @@ public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E>
 		}
 	}
 
+	/**
+	 * Elimina y retorna el elemento más pequeño del heap.
+	 * 
+	 * @return elemento más pequeño
+	 */
 	@Override
 	public E remove()
 	// pre: !isEmpty()
@@ -137,6 +188,11 @@ public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E>
 		return minVal;
 	}
 
+	/**
+	 * Retorna el elemento más pequeño del heap.
+	 * 
+	 * @return elemento mínimo
+	 */
 	@Override
 	public E getFirst()
 	// pre: !isEmpty()
@@ -145,6 +201,11 @@ public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E>
 		return data.get(0);
 	}
 
+	/**
+	 * Verifica si el heap está vacío.
+	 * 
+	 * @return true si no hay elementos
+	 */
 	@Override
 	public boolean isEmpty()
 	// post: returns true iff no elements are in queue
@@ -152,6 +213,11 @@ public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E>
 		return data.isEmpty();
 	}
 
+	/**
+	 * Retorna la cantidad de elementos en el heap.
+	 * 
+	 * @return tamaño del heap
+	 */
 	@Override
 	public int size()
 	// post: returns number of elements within queue
@@ -159,6 +225,9 @@ public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E>
 		return data.size();
 	}
 
+	/**
+	 * Elimina todos los elementos del heap.
+	 */
 	@Override
 	public void clear()
 	// post: removes all elements from queue

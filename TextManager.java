@@ -2,8 +2,17 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ *Lee archivos de texto y cargar pacientes en una cola de prioridad.
+ */
 public class TextManager {
 
+    /**
+     * Carga pacientes usando la implementación propia de cola de prioridad.
+     * 
+     * @param archivo nombre del archivo de texto
+     * @param cola cola de prioridad
+     */
     public static void cargarPacientes(String archivo, PriorityQueue<Paciente> cola)
     // pre: archivo existe y cola no es null
     // post: los pacientes del archivo fueron agregados a la cola
@@ -36,6 +45,12 @@ public class TextManager {
         }
     }
 
+    /**
+     * Carga pacientes usando la PriorityQueue de Java Framework.
+     * 
+     * @param archivo nombre del archivo de texto
+     * @param cola cola de prioridad de Java Collections Framework
+     */
     public static void cargarPacientes(
         String archivo,
         java.util.PriorityQueue<Paciente> cola)
